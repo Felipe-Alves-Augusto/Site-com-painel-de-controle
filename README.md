@@ -8,5 +8,6 @@ Senha:admin
 No momento é só isso que o painel consegue fazer mais estou trabalhando para adicionar mais opções.
 
 Linguagens usadas: HTML5, CSS3, JAVASCRIPT, PHP, MYSQL,JQUERY.
+
 Frameworks: BOOSTRAP, PHPMailer, Animate.css, chart.js.
 
