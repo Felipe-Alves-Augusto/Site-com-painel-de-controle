@@ -36,15 +36,15 @@
             <h2>Gestão</h2>
             <ul>
                 <li><a href="">Listar Depoimento</a></li>
-                <li><a href="">Listar Serviços</a></li>
+                <li><a  href="">Listar Serviços</a></li>
                 <li><a href="">Listar Novas Histórias</a></li>
             </ul>
         </div><!--itens-menu-->
         <div class="itens-menu">
             <h2>Administração do Painel</h2>
             <ul>
-                <li><a href="">Adicionar Usuários</a></li>
-                <li><a href="<?php INCLUDE_PATH_PAINEL?>editar-user">Editar Usuários</a></li>
+                <li><a href="<?php INCLUDE_PATH_PAINEL ?>adicionar-user">Adicionar Usuários</a></li>
+                <li><a  href="<?php INCLUDE_PATH_PAINEL?>editar-user">Editar Usuários</a></li>
             </ul>
         </div><!--itens-menu-->
         

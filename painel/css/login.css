@@ -94,6 +94,10 @@ html,body{
     margin-top: 15px;
 }
 
+.box-login select{
+    width: 100%;
+}
+
 .box-login input[type=submit]{
     width: 100%;
     height: 55px;
@@ -308,6 +312,11 @@ header{
 
 .edit form .form-group input{
     width:100%
+}
+
+.edit form .form-group select{
+    width: 100%;
+    height:calc(1.5em + .75rem + 2px);
 }
 
 

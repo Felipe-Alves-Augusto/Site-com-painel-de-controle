@@ -16,9 +16,11 @@
         public static function cargo($cargo){
             
             $arr = [
-                '0' => 'Normal',
-                '1' => 'Administrador',
-                '2' => 'Sub-Administrador'
+                '0' => 'normal',
+                '1' => 'Cliente',
+                '2'=> 'Sub-Administrador',
+                '3' => 'Adiministrador'
+            
             ];
 
             return $arr[$cargo];
@@ -58,6 +60,7 @@
         }
 
 
+        // mensagens de erro e sucesso para os formularios
         public static function alert($tipo,$mensagem){
             if($tipo == 'sucesso'){
                 echo '<div class="sucesso">'.$mensagem.'</div>';
@@ -66,7 +69,60 @@
             }
         }
             
+         function selecionarMenu($par){
+            //<i class="fas fa-angle-double-right"></i>;
+            $url = explode('/',@$_GET['url'])[0];
+            if($url == $par){
+                echo 'class="menu-active"';
+            }
+
+        }
+
+        public static $cargos = [
+            '0' => 'normal',
+            '1' => 'Cliente',
+            '2'=> 'Sub-Administrador',
+            '3' => 'Adiministrador'
+        ];
+
+        //determinando os tipos de imagem que pode fazer o upload
+        //com o $imagem['type']
+
+        public static function imagemValida($imagem){
+            if($imagem['type'] == 'image/jpeg' || $imagem['type'] == 'image/jpg' || $imagem['type'] == 'image/png'){
+                // pegando o tamanho da imagem com o $imagem['size'] e convertendo em KB dividindo em 1024
+                // o size retorna em bytes
+                // o valor dessa conta retornar quebrado então com intval transforma o numero em inteiro
+                $tamanho = intval($imagem['size'] / 1024);
+                if($tamanho < 300){
+                    return true;
+
+                } else{
+                    return false;
+                }
+
+                return true;
+
+            } else{
+                return false;
+            }
+        }
+
+        public static function uploadImagem($file){
+            //função que faz uploads de imagem atraves dos formularios
+            if(move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/uploads/'.$file['name'])){
+                return $file['name'];
+            } else {
+                return false;
+            }
+        }
+
+        public static function deleteFile($file){
+            @unlink(BASE_DIR_PAINEL.'/uploads/'.$file);
+        }
 
     }
+
+
 
 ?>
