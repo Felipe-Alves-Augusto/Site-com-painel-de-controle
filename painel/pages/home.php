@@ -42,9 +42,8 @@
     <section class="user-online">
     <table class="table">
   <thead class="thead-dark">
-
+  <h2 class='description'>Usuários Online no site</h2>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">IP</th>
       <th scope="col">Ultima Ação</th>
     </tr>
@@ -54,19 +53,38 @@
 
    ?>
     <tr>
-      <th scope="row">1</th>
       <td><?php echo $value['ip']; ?></td>
       <td><?php echo date('d-m-y H:i',strtotime($value['ultima_acao']));?></td>
     </tr>
+  </tbody>
+<?php } ?>
+</table>
+<table class="table">
+  <thead class="thead-dark">
+  <h2 class='description' style="margin-top:70px">Usuários cadastrados no painel</h2>
     <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
+     
+      <th scope="col">Nome</th>
+      <th scope="col">Cargo</th>
     </tr>
+  </thead>
+  <tbody>
+  <?php 
+    
+    $userPainel = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` ORDER BY nome ASC");
+    $userPainel->execute();
+    $userPainel = $userPainel->fetchAll();
+
+    
+
+    foreach($userPainel as $key => $value){
+
+   ?>
     <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
+      
+      <td><?php echo $value['nome']; ?></td>
+      <td><?php echo Painel::cargo($value['cargo']);?></td>
+     
     </tr>
   </tbody>
 <?php } ?>

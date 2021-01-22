@@ -1,3 +1,13 @@
+<?php
+    if(isset($_COOKIE['lembrar'])){
+        $email = $_COOKIE['email'];
+        $password = $_COOKIE['password'];
+ 
+        
+
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,7 +17,7 @@
     <link rel="stylesheet" href="<?php echo INCLUDE_PATH_PAINEL?>css/login.css">
 </head>
 <body>
-    <aside style="background-color: #1de9b6;height:100%" class="sidebar">
+    <aside style="background-color: #1de9b6;" class="sidebar">
         <h1>Bem Vindo!</h1>
         <p>Efetue o login para acessar o painel de controle!</p>
         <p>ou clique no botão abaixo para voltar para o site</p>
@@ -34,6 +44,11 @@
                 $_SESSION['cargo'] = $info['cargo'];
                 $_SESSION['nome'] = $info['nome'];
                 $_SESSION['img'] = $info['img'];
+                if(isset($_POST['lembrar'])){
+                    setcookie('lembrar', true, time()+(60*60*24),'/');
+                    setcookie('email', $email, time()+(60*60*24),'/');
+                    setcookie('password',$password,time()+(60*60*24),'/');
+                }
                 header('Location:'.INCLUDE_PATH_PAINEL);
                 die();
                 echo 'entro';
@@ -47,6 +62,7 @@
         <form action="" method="post">
             <input type="email" name="email" placeholder="Email:">
             <input type="password" name="senha" placeholder="Senha:">
+            <input type="checkbox" name="lembrar" id=""><span>Lembrar</span>
             <input type="submit" name="acao" value="ENTRAR!">
         
         </form>

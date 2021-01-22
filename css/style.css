@@ -233,12 +233,7 @@ form input[type=submit]:hover{
     padding: 30px 2%;
 }
 
-.wraper{
-    border: 1px solid #ccc;
-    width: 100%;
-    margin: 0 auto;
-    margin: 40px 0;
-}
+
 
 .card{
     padding: 50px;
@@ -250,12 +245,15 @@ form input[type=submit]:hover{
 }
 
 
+
 .titulo-card{
     width: 100%;
 
 }
 
 .titulo-card p{
+    width: 100%;
+    max-width: 600px;
     color: rgb(138, 138, 138);
     font-style: italic;
 }
@@ -282,7 +280,6 @@ form input[type=submit]:hover{
 }
 
 .titulo-card p:nth-last-of-type(1){
-    text-align: left;
     margin-top: 25px;
     letter-spacing: 2px;
 }
@@ -512,6 +509,14 @@ hr{
         float: none;
         width: 100%;
         padding: 25px;
+    }
+
+    .zoom img{
+        width: 100%;
+    }
+
+    .titulo-card p{
+        text-align: justify;
     }
     
     .depoimentos, .servicos{

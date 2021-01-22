@@ -28,16 +28,16 @@
             <h2>Cadastro</h2>
             <ul>
                 <li><a href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrarDepoimento">Cadastro Depoimento</a></li>
-                <li><a href="">Cadastro Serviços</a></li>
-                <li><a href="">Novas Histórias</a></li>
+                <li><a href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-servicos">Cadastro Serviços</a></li>
+                <li><a href="<?php echo INCLUDE_PATH_PAINEL ?>novas-historias">Novas Histórias</a></li>
             </ul>
         </div><!--itens-menu-->
         <div class="itens-menu">
             <h2>Gestão</h2>
             <ul>
-                <li><a href="">Listar Depoimento</a></li>
-                <li><a  href="">Listar Serviços</a></li>
-                <li><a href="">Listar Novas Histórias</a></li>
+                <li><a href="<?php echo INCLUDE_PATH_PAINEL ?>listar-depoimento">Listar Depoimento</a></li>
+                <li><a  href="<?php echo INCLUDE_PATH_PAINEL ?>listar-servicos">Listar Serviços</a></li>
+                <li><a href="<?php echo INCLUDE_PATH_PAINEL ?>listar-historias">Listar Novas Histórias</a></li>
             </ul>
         </div><!--itens-menu-->
         <div class="itens-menu">
@@ -45,6 +45,7 @@
             <ul>
                 <li><a href="<?php INCLUDE_PATH_PAINEL ?>adicionar-user">Adicionar Usuários</a></li>
                 <li><a  href="<?php INCLUDE_PATH_PAINEL?>editar-user">Editar Usuários</a></li>
+                <li><a  href="<?php INCLUDE_PATH_PAINEL?>deletar-user">Deletar Usuários</a></li>
             </ul>
         </div><!--itens-menu-->
         

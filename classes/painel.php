@@ -9,6 +9,7 @@
         }
 
         public static function loggout(){
+            setcookie('lembrar', true, time()-1, '/');
             session_destroy();
             header('Location:'.INCLUDE_PATH_PAINEL);
         }
@@ -63,9 +64,9 @@
         // mensagens de erro e sucesso para os formularios
         public static function alert($tipo,$mensagem){
             if($tipo == 'sucesso'){
-                echo '<div class="sucesso">'.$mensagem.'</div>';
+                echo '<div class="sucesso bg-success">'.$mensagem.'</div>';
             } else if($tipo == 'erro'){
-                echo '<div class="erro">'.$mensagem.'</div>';
+                echo '<div class="erro bg-danger">'.$mensagem.'</div>';
             }
         }
             
@@ -89,12 +90,12 @@
         //com o $imagem['type']
 
         public static function imagemValida($imagem){
-            if($imagem['type'] == 'image/jpeg' || $imagem['type'] == 'image/jpg' || $imagem['type'] == 'image/png'){
+            if($imagem['type'] == 'imagem/jpeg' || $imagem['type'] == 'imagem/jpg' || $imagem['type'] == 'imagem/png'){
                 // pegando o tamanho da imagem com o $imagem['size'] e convertendo em KB dividindo em 1024
                 // o size retorna em bytes
                 // o valor dessa conta retornar quebrado então com intval transforma o numero em inteiro
                 $tamanho = intval($imagem['size'] / 1024);
-                if($tamanho < 300){
+                if($tamanho < 400){
                     return true;
 
                 } else{
@@ -110,8 +111,10 @@
 
         public static function uploadImagem($file){
             //função que faz uploads de imagem atraves dos formularios
-            if(move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/uploads/'.$file['name'])){
-                return $file['name'];
+            $formatoArquivo = explode('.',$file['name']);
+            $imagemNome = uniqid().'.'.$formatoArquivo[count($formatoArquivo) - 1];
+            if(move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/uploads/'.$imagemNome)){
+                return $imagemNome;
             } else {
                 return false;
             }
@@ -119,6 +122,115 @@
 
         public static function deleteFile($file){
             @unlink(BASE_DIR_PAINEL.'/uploads/'.$file);
+        }
+
+        public static function insert($arr){
+            $certo = true;
+            $nome_tabela = $arr['nome_tabela'];
+            $query = "INSERT INTO `$nome_tabela` VALUES (null";
+            foreach($arr as $key => $value){
+                $nome_coluna= $key;
+                $valor = $value;
+                if($nome_coluna == 'acao' || $nome_coluna == 'nome_tabela'){
+                    continue;
+                }
+
+                if($value == ''){
+                    $certo = false;
+                    break;
+                }
+
+                $query.=",?";
+                $parametros[] = $value;
+            }
+
+            $query.=")";
+            if($certo == true){
+                $sql = MySql::conectar()->prepare($query);
+                @$sql->execute($parametros);
+            }
+            return $certo;
+
+        }
+
+        public static function selectAll($tabela){
+
+            $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela`");
+            $sql->execute();
+            return $sql->fetchAll();
+
+        }
+
+        public static function deletar($tabela,$id=false){
+            if($id == false){
+                $sql = MySql::conectar()->prepare("DELETE FROM `$tabela`");
+            } else{
+                $sql = MySql::conectar()->prepare("DELETE FROM `$tabela` WHERE id = $id");
+            }
+            $sql->execute();
+        }
+
+        // select para pegar apenas um elemento especifico
+
+        //table = nome da tabela
+        //query = mecionar o id = ?
+        // array para executar o comando
+        public static function select($table,$query,$arr){
+            $sql = MySql::conectar()->prepare("SELECT * FROM `$table` WHERE $query");
+            $sql->execute($arr);
+            return $sql->fetch();
+        }
+
+            // FUNÇÃO DE UPDATE DINAMICA
+        /*
+        public static function update($arr){
+            $certo = true;
+            $first = false;
+            $nome_tabela = $arr['nome_tabela'];
+            $query = "UPDATE `$nome_tabela` SET ";
+            foreach($arr as $key => $value){
+                $nome_coluna= $key;
+                $valor = $value;
+                if($nome_coluna == 'acao' || $nome_tabela == 'nome_tabela' || $nome == 'id'){
+                    continue;
+                }
+
+                if($value == ''){
+                    $certo = false;
+                    break;
+                }
+
+                if($first == false){
+                    $first = true;
+                    $query.="$nome=?";
+                } else{
+                    $query.=",$nome=?";
+                }
+                
+                $parametros[] = $value;
+            }
+
+            
+            if($certo == true){
+                $parametros[] = $arr['id'];
+                $sql = MySql::conectar()->prepare($query. 'WHERE id=?');
+                $sql->execute($parametros);
+            }
+            return $certo;
+
+        }
+        */
+
+        // função para atualizar o depoimento
+
+        public static function atualizarDepoimento($nome,$depoimento,$id){
+            $sql = MySql::conectar()->prepare("UPDATE `tb_admin.depoimentos` SET nome = ?, depoimento = ? WHERE id = ?");
+            if($sql->execute(array($nome,$depoimento,$id))){
+                return true;
+                
+            } else{
+                return false;
+            }
         }
 
     }

@@ -12,6 +12,9 @@
             }
         }
 
+        
+        // função para saber se ja tem o email cadastrado no banco de dados
+        // se tiver o sistema não deixa cadastrar o mesmo email
         public static function userExists($email){
             $sql = MySql::conectar()->prepare("SELECT `id` FROM `tb_admin.usuarios` WHERE email = ?");
             $sql->execute(array($email));
@@ -28,7 +31,18 @@
        
         public static function cadastrarUsuario($email,$senha,$imagem,$nome,$cargo){
             $sql = MySql::conectar()->prepare("INSERT INTO `tb_admin.usuarios`(id,email,password,img,nome,cargo) VALUES (null,?,?,?,?,?)");
-            $sql->execute([$email,$senha,$nome,$cargo]);
+            
+            $sql->execute([$email,$senha,$imagem,$nome,$cargo]);
+        }
+
+        public static function deletarUsuario($id){
+            if($id == false){
+                $sql = MySql::conectar()->prepare("DELETE FROM `tb_admin.usuarios`");
+                
+            } else{
+                $sql = MySql::conectar()->prepare("DELETE FROM `tb_admin.usuarios` WHERE id = ?");
+            }
+            $sql->execute();
         }
 
     }

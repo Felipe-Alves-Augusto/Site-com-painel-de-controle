@@ -16,7 +16,7 @@
 
 
     //URLS AMIGAVEIS
-    define('INCLUDE_PATH', 'http://localhost/PHP Projetos/projeto_01/');
+    define('INCLUDE_PATH', 'http://192.168.15.110/PHP%20Projetos/projeto_01/');
     define('INCLUDE_PATH_PAINEL', INCLUDE_PATH.'painel/');
     
     define('BASE_DIR_PAINEL', __DIR__.'/painel');

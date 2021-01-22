@@ -8,6 +8,37 @@
 }
 
 
+/* ROOT DO BOOSTRAP */
+
+:root {
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-primary: #0d6efd;
+    --bs-secondary: #6c757d;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  }
+  
+
+
 html,body{
     height: 100%;
 }
@@ -31,6 +62,7 @@ html,body{
     float: left;
     color: #fff;
     border-radius: 10px;
+    height: 100%;
 }
 
 .sidebar h1{
@@ -97,6 +129,19 @@ html,body{
 .box-login select{
     width: 100%;
 }
+
+.box-login input[type=checkbox]{
+    width: 10px;
+    display: inline-block;
+    margin-top: 0;
+}
+
+.box-login span{
+    position: relative;
+    bottom: 15px;
+    left: 5px;
+}
+
 
 .box-login input[type=submit]{
     width: 100%;
@@ -211,6 +256,8 @@ header{
 .itens-menu h2{
     font-size: 15px;
     padding: 10px 7%;
+    color: var(--bs-secondary);
+    
 }
 
 .itens-menu ul{
@@ -256,6 +303,10 @@ header{
     border-radius: 10px;
 }
 
+.description{
+    font-size: 20px;
+}
+
 .box-content h2{
     color: #fff;
     background-color: transparent;
@@ -297,7 +348,7 @@ header{
 .edit{
     float: left;
     padding: 30px;
-    width: 50%
+    width: 50%;
 }
 
 .edit h1{
@@ -310,6 +361,10 @@ header{
     max-width: 600px;
 }
 
+.edit form .form-group{
+    margin-top: 30px;
+}
+
 .edit form .form-group input{
     width:100%
 }
@@ -319,6 +374,15 @@ header{
     height:calc(1.5em + .75rem + 2px);
 }
 
+.edit form .form-group textarea{
+    height: 170px;
+}
+
+.table-2{
+    padding: 30px;
+    float: left;
+    width: 80%
+}
 
 /* mensagem de sucesso e de error ao atualizar o usuario */
 
@@ -363,14 +427,17 @@ header{
         height: 30%;
     }
 
-    .sidebar a{
-        left: 43%;
-    }
+  
+
 
     .box-login{
         position: static;
         transform: none;
+        max-width: 100%;
+        margin-top: 30px;
     }
+
+   
 
     .content{
         display: block;
@@ -420,14 +487,17 @@ header{
         height: 30%;
     }
 
-    .sidebar a{
-        left: 43%;
-    }
+    
+
+
 
     .box-login{
         position: static;
         transform: none;
+        max-width: 100%;
+        margin-top: 30px;
     }
+
 
     .content{
         display: block;
@@ -456,6 +526,22 @@ header{
         float: none;
         width: 100%;
     }
+
+    .edit h1{
+        margin-top: 75px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .edit form{
+        margin: 40px auto;
+    }
+    
+    .edit{
+        float: none;
+        width: 100%;
+        padding: 15px;
+    }
 }
 
 @media screen and (max-width:510px){
@@ -474,24 +560,28 @@ header{
     .sidebar{
         float: none;
         width: 100%;
-        height: 30%;
+       height: 50%;
     }
+
+   
 
     .box-login{
         position: static;
         transform: none;
+        padding: 60px 3%;
     }
 
     .content{
         display: block;
         width: 100%;
         
+        
        
     }
 
     .box-content{
         width: 100%;
-        margin: 0 10px;
+        
      
     }
 
@@ -508,6 +598,17 @@ header{
     .user-online{
         float: none;
         width: 100%;
+    }
+
+    .edit h1{
+        margin-top: 75px;
+        font-size: 20px;
+    }
+
+    .edit{
+        float: none;
+        width: 100%;
+        padding: 15px;
     }
 
    
