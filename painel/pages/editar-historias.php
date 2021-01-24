@@ -32,7 +32,29 @@
                     $titulo = $_POST['titulo'];
                     $content = $_POST['content'];
                     $imagem = $_FILES['foto'];
-                    $imagem_atual = $POST['imagem_atual'];
+                    $imagem_atual = $_POST['img_atual'];
+                    $id = $_POST['id'];
+                
+
+                    if($imagem['name'] != ''){
+                        //o usuario fez o upload de imagem
+
+                        if(Painel::imagemValida($imagem) == !true){
+                            Painel::deleteFile($imagem_atual);
+                            $imagem = Painel::uploadImagem($imagem);
+                            Painel::atualizarHistorias($data, $titulo, $imagem,$content,$id);
+                            Painel::alert('sucesso','História editada com sucesso!');
+                            
+                        } else{
+                            Painel::alert('erro','Selecione um formato JPEG, JPG ou PNG');
+                        }
+                        
+                    } else{
+                        $imagem = $imagem_atual;
+                        Painel::atualizarHistorias($data, $titulo, $imagem,$content,$id);
+                        Painel::alert('sucesso','História editada com sucesso!');
+                    }
+
                 }
                
 
@@ -60,6 +82,7 @@
                 <input type="file" name="foto" class="form-control" id="img">
                 <input type="hidden" name="img_atual" value="<?php echo $historias['foto']; ?>">
                 <input type="hidden" name="nome_tabela" value="tb_admin.historias">
+                <input type="hidden" name="id" value="<?php echo $id ?>">
             </div><!--form-group-->
             <button type="submit" name="acao" class="btn btn-primary">Editar!</button>
         </form>

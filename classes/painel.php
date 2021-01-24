@@ -233,6 +233,18 @@
             }
         }
 
+
+        public static function atualizarHistorias($data, $titulo, $foto,$content,$id){
+            $sql = MySql::conectar()->prepare("UPDATE `tb_admin.historias` SET data = ?, titulo = ?, foto = ?, content = ?WHERE id = ?");
+            if($sql->execute([$data, $titulo, $foto,$content,$id])){
+                return true;
+
+            } else{
+                return false;
+            }
+            
+        }
+
     }
 
 
